@@ -1,0 +1,33 @@
+import java.awt.*;
+import java.util.Timer;
+import java.util.TimerTask;
+
+public class RandomEnemy extends Enemy{ 
+    
+    private static int width;
+    private static int height;
+    private Rectangle rect;
+    private Timer timer;
+
+    public RandomEnemy(int x, int y, int w, int h, int width, int height){
+        super(x, y, w, h);
+        this.width = width;
+        this.height = height;
+        rect = getRectangle();
+        timer = new Timer();
+        timer.schedule(new TimerTask(){
+            @Override
+            public void run(){
+                rect.x = (int)(Math.random() * 435);
+                rect.y = (int)(Math.random() * 310);
+            }
+        }, 0, 2500);
+    }
+    
+    public Color getColor(){
+        return new Color(250, 10, 10);
+    }
+
+    public void move(){
+    }
+}

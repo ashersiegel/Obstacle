@@ -1,0 +1,48 @@
+import java.awt.*;
+
+public class DiagonalEnemy extends VerticalEnemy
+{
+    private static int screenWidth;
+    private static int screenHeight;
+    private static int xSpeed;
+    private static int ySpeed;
+
+    public DiagonalEnemy(int x, int y, int w, int h, int sH, int yS, int sW, int xS) {
+        super(x, y, w, h, sH, yS);
+        screenWidth = sW;
+        screenHeight = sH;
+        xSpeed = xS;
+        ySpeed = yS;
+    }
+    
+    public Color getColor() {
+        return new Color(255, 0, 144);
+    }
+    
+    public void move(){
+        Rectangle rect = getRectangle();
+        
+        rect.x += xSpeed;
+        rect.y += ySpeed;
+        if(rect.x + rect.width >= screenWidth){
+            rect.x = screenWidth - rect.width;
+            xSpeed = -xSpeed;
+        } 
+        else if (rect.x <= 0){
+            rect.x = 0;
+            xSpeed = -xSpeed;
+        }
+        if(rect.y + rect.height >= screenHeight){
+            rect.y = screenHeight - rect.height;
+            ySpeed = -ySpeed;
+        } 
+        else if(rect.y <= 0){
+            rect.y = 0;
+            ySpeed = -ySpeed;
+        }
+    }
+    
+    public void draw(Graphics g) {
+        super.draw(g);
+    }
+}
